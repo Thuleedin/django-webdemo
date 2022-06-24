@@ -1,0 +1,17 @@
+{% extends 'app_gen/components/base.html' %}
+
+{% block site_title %}เกี่ยวกับ | {% endblock site_title %}
+
+{% block content %}
+<section class="content-section content-section-single">
+    <div class="content-container content-container-narrow">
+        <h2 class="content-title">ขอบคุณสำหรับการลงทะเบียน</h2>
+        <p>
+            ขอขอบพระคุณสำหรับการลงทะเบียนในครั้งนี้ ขอให้ทุกท่านเลือกเมนูได้อย่างถูกปาก ถูกใจ
+            และเพลิดเพลินในการเลือกสินค้านะครับ
+        </p>
+        <a class="button button-primary" href="{% url 'home'%}">กลับหน้าแรก</a>
+    </div>
+
+</section>
+{% endblock content %}

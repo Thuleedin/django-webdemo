@@ -1,0 +1,39 @@
+{% extends 'app_gen/components/base.html' %}
+{% load static %}
+{% block site_title %}เมนูทั้งหมด | {% endblock site_title %}
+
+{% block content %}
+<section class="content-section content-section-sigle">
+    <div class="content-container">
+        <h2>เรื่องสมุนไพร ไว้ใจผม</h2>
+        {% if foods.count > 0 %}
+            <div class="grid grid-3">
+                {% for food in foods %}
+                    <div>
+                        <a href="{% url 'food' food.id %}">
+                            <img class="image-block" src="{% static food.image_relative_url %}">
+                        </a>
+                        <h5 class="food-title">
+                            <a href="{% url 'food' food.id %}">{{ food.title }}</a>
+                        </h5>
+                        {% if food.special_price is not None %}
+                            <p>
+                                <span>{{ food.special_price|floatformat:'g' }} บาท</span>
+                                <del class="text-gray">{{ food.price|floatformat:'g' }} บาท</del>
+                            </p>
+                        {% else %}
+                            <p>{{ food.price|floatformat:'g'}} บาท</p>
+                        {% endif %}
+                        {% if food.is_premium %}
+                            <p>*** เมนูพิเศษสุด Premium ***</p>
+                        {% endif %}
+                        <p>โปรโมชั่นถึงวันที่ {{ food.promotion_end_at | date:'j N Y' }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>ไม่มีข้อมูลเมนู</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
